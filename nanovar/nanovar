@@ -72,7 +72,7 @@ def main():
     archivefasta = args.archivefasta
     blastout = args.blastout
 
-    shutil.copytree(install_ref_dir, wk_dir)
+    shutil.copytree(install_ref_dir, os.path.join(wk_dir, "ref"))
     ref_dir = os.path.join(wk_dir, 'ref')
 
     # Check model file
