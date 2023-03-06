@@ -24,6 +24,7 @@ along with NanoVar.  If not, see <https://www.gnu.org/licenses/>.
 
 __author__ = 'CY Tham'
 import os
+import shutil
 import sys
 import time
 import pysam
@@ -61,7 +62,7 @@ def main():
     force = args.force
     model_path = args.model
     filter_bed_dir = os.path.join(os.path.dirname(nanovar.__file__), 'gaps')
-    ref_dir = os.path.join(os.path.dirname(nanovar.__file__), 'ref')
+    install_ref_dir = os.path.join(os.path.dirname(nanovar.__file__), 'ref')
     mm = args.mm
     st = args.st
     mdb = args.mdb
@@ -70,6 +71,9 @@ def main():
     pickle_bool = args.pickle
     archivefasta = args.archivefasta
     blastout = args.blastout
+
+    shutil.copytree(install_ref_dir, wk_dir)
+    ref_dir = os.path.join(wk_dir, 'ref')
 
     # Check model file
     if model_path is None:
